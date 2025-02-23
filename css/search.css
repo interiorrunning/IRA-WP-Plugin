@@ -1,0 +1,34 @@
+#iraok-search-bar .wp-block-search__inside-wrapper {
+  width: 100%;
+}
+
+#iraok-search-table > table > thead > tr > th[data-column="Name"],
+#iraok-search-table > table > thead > tr > th[data-column="City"] {
+  text-align: left;
+}
+
+#iraok-search-table > table > tbody > tr > td[data-column="Races"],
+#iraok-search-table > table > tbody > tr > td[data-column="AgeGroup"] {
+  text-align: center;
+}
+
+@media only screen and (max-width: 650px) {
+  #iraok-search-table > table > thead > tr > th[data-column="AgeGroup"],
+  #iraok-search-table > table > tbody > tr > td[data-column="AgeGroup"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #iraok-search-table > table > thead > tr > th[data-column="City"],
+  #iraok-search-table > table > tbody > tr > td[data-column="City"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  #iraok-search-table > table > thead > tr > th[data-column="Races"],
+  #iraok-search-table > table > tbody > tr > td[data-column="Races"] {
+    display: none;
+  }
+}

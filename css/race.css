@@ -1,0 +1,102 @@
+#iraok-race-year-type-number,
+#iraok-race-button-group,
+#iraok-race-table,
+#iraok-race-series-columns {
+  display: none;
+}
+
+#iraok-race-button-group > div > a {
+  border-radius: 0.33rem;
+  padding: 13px;
+  padding-right: 8px;
+  border-width: 2px;
+}
+
+#iraok-race-table > table > thead > tr > th[data-column="name"],
+#iraok-race-table > table > thead > tr > th[data-column="name-ag"],
+#iraok-race-table > table > thead > tr > th[data-column="city"],
+#iraok-race-table > table > thead > tr > th[data-column="city-ag"] {
+  text-align: left;
+}
+
+#iraok-race-table > table > tbody > tr > td[data-column="finish"],
+#iraok-race-table > table > tbody > tr > td[data-column="finish-ag"] {
+  padding: 0px;
+}
+#iraok-race-table > table > tbody > tr > td[data-column="div"],
+#iraok-race-table > table > tbody > tr > td[data-column="div-ag"] {
+  white-space: nowrap;
+}
+
+#iraok-race-table > table > tbody > tr > td[data-column="age_adj"],
+#iraok-race-table > table > tbody > tr > td[data-column="age_adj-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="time"],
+#iraok-race-table > table > tbody > tr > td[data-column="time-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="chip"],
+#iraok-race-table > table > tbody > tr > td[data-column="chip-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="pace"],
+#iraok-race-table > table > tbody > tr > td[data-column="pace-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="ag-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="award"],
+#iraok-race-table > table > tbody > tr > td[data-column="award-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="finish"],
+#iraok-race-table > table > tbody > tr > td[data-column="finish-ag"],
+#iraok-race-table > table > tbody > tr > td[data-column="div"],
+#iraok-race-table > table > tbody > tr > td[data-column="div-ag"] {
+  text-align: center;
+}
+
+#iraok-race-table > table > tbody > tr > td[data-column="award"],
+#iraok-race-table > table > tbody > tr > td[data-column="award-ag"] {
+  padding: 0px;
+}
+
+span.material-symbols-outlined {
+  vertical-align: middle;
+}
+
+@media only screen and (max-width: 950px) {
+  #iraok-race-table > table > thead > tr > th[data-column="chip"],
+  #iraok-race-table > table > thead > tr > th[data-column="chip-ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="chip"],
+  #iraok-race-table > table > tbody > tr > td[data-column="chip-ag"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  #iraok-race-table > table > thead > tr > th[data-column="pace"],
+  #iraok-race-table > table > thead > tr > th[data-column="time-ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="pace"],
+  #iraok-race-table > table > tbody > tr > td[data-column="time-ag"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #iraok-race-table > table > thead > tr > th[data-column="city"],
+  #iraok-race-table > table > thead > tr > th[data-column="city-ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="city"],
+  #iraok-race-table > table > tbody > tr > td[data-column="city-ag"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  #iraok-race-table > table > thead > tr > th[data-column="ag"],
+  #iraok-race-table > table > thead > tr > th[data-column="award-ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="award-ag"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  #iraok-race-table > table > thead > tr > th[data-column="div"],
+  #iraok-race-table > table > thead > tr > th[data-column="div-ag"],
+  #iraok-race-table > table > tbody > tr > td[data-column="div"],
+  #iraok-race-table > table > tbody > tr > td[data-column="div-ag"] {
+    display: none;
+  }
+}

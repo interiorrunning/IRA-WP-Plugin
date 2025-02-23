@@ -1,0 +1,94 @@
+#iraok-athlete-table-group,
+#iraok-athlete-table {
+  margin-top: 0px;
+}
+
+#iraok-athlete-awards-heading,
+#iraok-athlete-table-heading {
+  margin-bottom: 0px;
+}
+
+#iraok-athlete-awards,
+#iraok-athlete-awards-heading,
+#iraok-athlete-table,
+#iraok-athlete-table-heading {
+  display: none;
+}
+
+#iraok-athlete-awards > table > thead > tr > th[data-column="award_name"],
+#iraok-athlete-awards > table > thead > tr > th[data-column="award_years"] {
+  text-align: left;
+}
+
+#iraok-athlete-table > table > thead > tr > th[data-column="date"],
+#iraok-athlete-table > table > thead > tr > th[data-column="race"],
+#iraok-athlete-table > table > thead > tr > th[data-column="city"] {
+  text-align: left;
+}
+
+#iraok-athlete-table > table > tbody > tr > td[data-column="div"],
+#iraok-athlete-table > table > tbody > tr > td[data-column="date"] {
+  white-space: nowrap;
+}
+
+#iraok-athlete-table > table > tbody > tr > td[data-column="div"],
+#iraok-athlete-table > table > tbody > tr > td[data-column="time"],
+#iraok-athlete-table > table > tbody > tr > td[data-column="pace"],
+#iraok-athlete-table > table > tbody > tr > td[data-column="ag"],
+#iraok-athlete-table > table > tbody > tr > td[data-column="award"] {
+  text-align: center;
+}
+
+#iraok-athlete-table > table > tbody > tr > td[data-column="award"] {
+  padding: 0px;
+}
+
+span.material-symbols-outlined {
+  vertical-align: middle;
+}
+
+
+@media only screen and (max-width: 1080px) {
+  #iraok-athlete-table > table > thead > tr > th[data-column="city"] {
+    display: none;
+  }
+  #iraok-athlete-table > table > tbody > tr > td[data-column="city"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #iraok-athlete-table > table > thead > tr > th[data-column="pace"] {
+    display: none;
+  }
+  #iraok-athlete-table > table > tbody > tr > td[data-column="pace"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  #iraok-athlete-table > table > thead > tr > th[data-column="div"] {
+    display: none;
+  }
+  #iraok-athlete-table > table > tbody > tr > td[data-column="div"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #iraok-athlete-table > table > thead > tr > th[data-column="ag"] {
+    display: none;
+  }
+  #iraok-athlete-table > table > tbody > tr > td[data-column="ag"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #iraok-athlete-table > table > thead > tr > th[data-column="award"] {
+    display: none;
+  }
+  #iraok-athlete-table > table > tbody > tr > td[data-column="award"] {
+    display: none;
+  }
+}

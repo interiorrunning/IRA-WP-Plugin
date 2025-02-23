@@ -1,0 +1,79 @@
+#iraok-age-grade-table > table > thead > tr > th[data-column="name"],
+#iraok-age-grade-table > table > thead > tr > th[data-column="city"] {
+  text-align: left;
+}
+
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n1"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n2"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n3"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n4"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n5"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n6"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n7"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n8"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n9"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n10"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n11"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n12"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="n13"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="total"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="eligible"] {
+  text-align: center;
+}
+
+#iraok-age-grade-type > div > div > div,
+#iraok-age-grade-gen > div > div > div {
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 800px) {
+  #iraok-age-grade-table > table > thead > tr > th[data-column="eligible"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="eligible"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  #iraok-age-grade-table > table > thead > tr > th[data-column="city"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="city"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  #iraok-age-grade-table > table > thead > tr > th[data-column="age_group"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="age_group"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n1"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n1"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n2"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n2"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n3"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n3"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n4"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n4"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n5"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n5"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n6"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n6"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n7"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n7"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n8"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n8"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n9"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n9"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n10"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n10"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n11"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n11"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n12"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n12"],
+  #iraok-age-grade-table > table > thead > tr > th[data-column="n13"],
+  #iraok-age-grade-table > table > tbody > tr > td[data-column="n13"] {
+    display: none;
+  }
+}

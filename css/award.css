@@ -1,0 +1,12 @@
+#iraok-awards-table > table > thead > tr > th[data-column="Award"],
+#iraok-awards-table > table > tbody > tr > th[data-column="Award"],
+#iraok-awards-table > table > thead > tr > th[data-column="City"],
+#iraok-awards-table > table > tbody > tr > th[data-column="City"],
+#iraok-awards-table > table > thead > tr > th[data-column="Name"],
+#iraok-awards-table > table > tbody > tr > th[data-column="Name"] {
+  text-align: left;
+}
+
+#iraok-awards-table > table > tbody > tr:has(td[data-column="Blank"]) {
+  background-color: transparent;
+}

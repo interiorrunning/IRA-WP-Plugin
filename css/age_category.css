@@ -1,0 +1,79 @@
+#iraok-age-category-table > table > thead > tr > th[data-column="Name"],
+#iraok-age-category-table > table > thead > tr > th[data-column="City"],
+#iraok-age-category-table > table > thead > tr > th[data-column="AgeGroup"] {
+  text-align: left;
+}
+
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number01"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number02"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number03"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number04"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number05"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number06"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number07"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number08"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number09"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number10"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number11"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number12"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Number13"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="TotalPoints"],
+#iraok-age-category-table > table > tbody > tr > td[data-column="Eligible"] {
+  text-align: center;
+}
+
+#iraok-age-category-type > div > div > div {
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 750px) {
+  #iraok-age-category-table > table > thead > tr > th[data-column="Eligible"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Eligible"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  #iraok-age-category-table > table > thead > tr > th[data-column="City"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="City"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #iraok-age-category-table > table > thead > tr > th[data-column="AgeGroup"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="AgeGroup"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number01"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number01"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number02"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number02"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number03"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number03"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number04"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number04"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number05"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number05"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number06"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number06"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number07"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number07"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number08"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number08"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number09"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number09"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number10"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number10"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number11"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number11"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number12"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number12"],
+  #iraok-age-category-table > table > thead > tr > th[data-column="Number13"],
+  #iraok-age-category-table > table > tbody > tr > td[data-column="Number13"] {
+    display: none;
+  }
+}

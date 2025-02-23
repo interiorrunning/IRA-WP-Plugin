@@ -1,0 +1,51 @@
+#iraok-races-table > table > thead > tr > th[data-column="Date"],
+#iraok-races-table > table > tbody > tr > td[data-column="Date"],
+#iraok-races-table > table > thead > tr > th[data-column="Name"],
+#iraok-races-table > table > tbody > tr > td[data-column="Name"],
+#iraok-races-table > table > thead > tr > th[data-column="City"],
+#iraok-races-table > table > tbody > tr > td[data-column="City"],
+#iraok-races-table > table > thead > tr > th[data-column="MName"],
+#iraok-races-table > table > tbody > tr > td[data-column="MName"],
+#iraok-races-table > table > thead > tr > th[data-column="FName"],
+#iraok-races-table > table > tbody > tr > td[data-column="FName"] {
+  text-align: left;
+}
+
+#iraok-races-table > table > tbody > tr > td[data-column="Date"] {
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 1250px) {
+  #iraok-races-table > table > thead > tr > th[data-column="City"],
+  #iraok-races-table > table > tbody > tr > td[data-column="City"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  #iraok-races-table > table > thead > tr > th[data-column="Finishers"],
+  #iraok-races-table > table > tbody > tr > td[data-column="Finishers"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  #iraok-races-table > table > thead > tr > th[data-column="Type"],
+  #iraok-races-table > table > tbody > tr > td[data-column="Type"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  #iraok-races-table > table > thead > tr > th[data-column="MName"],
+  #iraok-races-table > table > tbody > tr > td[data-column="MName"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #iraok-races-table > table > thead > tr > th[data-column="FName"],
+  #iraok-races-table > table > tbody > tr > td[data-column="FName"] {
+    display: none;
+  }
+}
