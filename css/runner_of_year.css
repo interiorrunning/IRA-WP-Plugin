@@ -14,8 +14,16 @@
   white-space: nowrap;
 }
 
-@media only screen and (max-width: 800px) {
-  #iraok-runner-of-year-table>table>thead>tr>th[data-column="n1"] {
+@media only screen and (max-width: 950px) {
+  #iraok-runner-of-year-table>table>thead>tr>th[data-column="AgeGroup"],
+  #iraok-runner-of-year-table>table>tbody>tr>td[data-column="AgeGroup"] {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  #iraok-runner-of-year-table>table>thead>tr>th[data-column="City"],
+  #iraok-runner-of-year-table>table>tbody>tr>td[data-column="City"] {
     display: none;
   }
 }
