@@ -74,6 +74,12 @@ function iraok_init()
 		'top'
 	);
 
+	add_rewrite_rule(
+		'^runner-of-year\/(198[2-9]|199[0-9]|20[0-1][0-9]|202[0-9])\/?$',
+		'index.php?pagename=runner-of-year&race_year=$matches[1]',
+		'top'
+	);
+
 	/*
 	add_rewrite_rule(
 		'^age-grade-scoring\/(198[2-9]|199[0-9]|20[0-1][0-9]|202[0-9])\/?$',
@@ -94,7 +100,7 @@ function iraok_wp_enqueue_scripts()
 {
 	$ver = '1.0.04';
 
-	if (is_page('race') || is_page('athlete') || is_page('award') || is_page('series') || is_page('award') || is_page('races') || is_page('age-category') || is_page('age-grade') || is_page('search')) {
+	if (is_page('race') || is_page('athlete') || is_page('award') || is_page('series') || is_page('award') || is_page('races') || is_page('age-category') || is_page('age-grade') || is_page('search') || is_page('runner-of-year')) {
 		wp_register_script("iraok-ira", plugins_url('/js/ira.js', __FILE__), array(), $ver, array());
 		wp_enqueue_style("iraok-ira", plugins_url('/css/ira.css', __FILE__), array(), $ver, 'all');
 
@@ -201,6 +207,19 @@ function iraok_wp_enqueue_scripts()
 		$info = $wpdb->get_results($wpdb->prepare("call dbo.p_get_age_grade_info(%d);", $race_year));
 		wp_add_inline_script("iraok-ira", "iraok.age_grade.results = " .  json_encode($result));
 		wp_add_inline_script("iraok-ira", "iraok.age_grade.info = " .  json_encode($info));
+	} else if (is_page('runner-of-year')) {
+
+		wp_enqueue_script("iraok-runner_of_year", plugins_url('/js/runner_of_year.js', __FILE__), array("iraok-ira"), $ver, array());
+		wp_enqueue_script("iraok-runner_of_year_end", plugins_url('/js/runner_of_year_end.js', __FILE__), array(), $ver, array('strategy' => 'defer'));
+		wp_enqueue_style("iraok-runner_of_year", plugins_url('/css/runner_of_year.css', __FILE__), array(), $ver, 'all');
+
+		$race_year =  get_query_var("race_year");
+
+		global $wpdb;
+		$result = $wpdb->get_results($wpdb->prepare("call dbo.p_get_runner_of_year(%d);", $race_year));
+		$info = $wpdb->get_results($wpdb->prepare("call dbo.p_get_runner_of_year_info(%d);", $race_year));
+		wp_add_inline_script("iraok-ira", "iraok.runner_of_year.results = " .  json_encode($result));
+		wp_add_inline_script("iraok-ira", "iraok.runner_of_year.info = " .  json_encode($info));
 	} else if (is_page('search')) {
 
 		wp_enqueue_script("iraok-search", plugins_url('/js/search.js', __FILE__), array("iraok-ira"), $ver, array());
@@ -285,6 +304,9 @@ function iraok_pre_get_document_title($title)
 	} else if (is_page('age-grade')) {
 		$race_year =  get_query_var("race_year");
 		return "Age Grade Scoring | " . $race_year . " | Interior Running Association";
+	} else if (is_page('runner-of-year')) {
+		$race_year =  get_query_var("race_year");
+		return "Runner of Year | " . $race_year . " | Interior Running Association";
 	} else if (is_page('search')) {
 		return "Athlete Search | Interior Running Association";
 	}
@@ -313,6 +335,9 @@ function iraok_the_title($title, $post_id)
 	} else if (is_page('age-grade') && $title == "age-grade") {
 		$race_year =  get_query_var("race_year");
 		return "Age Grade Scoring | " . $race_year;
+	} else if (is_page('runner-of-year') && $title == "runner-of-year") {
+		$race_year =  get_query_var("race_year");
+		return "Runner of Year | " . $race_year;
 	} else if (is_page('search') && $title == "search") {
 		return "Athlete Search";
 	}
@@ -338,6 +363,9 @@ function iraok_get_canonical_url($original_url, $post)
 		$race_year =  get_query_var("race_year");
 		return $original_url .  $race_year . "/";
 	} else if (is_page('age-grade')) {
+		$race_year =  get_query_var("race_year");
+		return $original_url .  $race_year . "/";
+	} else if (is_page('runner-of-year')) {
 		$race_year =  get_query_var("race_year");
 		return $original_url .  $race_year . "/";
 	}

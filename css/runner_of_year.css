@@ -1,0 +1,21 @@
+#iraok-runner-of-year-table>table>thead>tr>th[data-column="Name"],
+#iraok-runner-of-year-table>table>thead>tr>th[data-column="City"],
+#iraok-runner-of-year-table>table>thead>tr>th[data-column="Finishes"] {
+  text-align: left;
+}
+
+
+#iraok-runner-of-year-table>table>tbody>tr>td[data-column="Average"],
+#iraok-runner-of-year-table>table>tbody>tr>td[data-column="AgeGroup"] {
+  text-align: center;
+}
+
+#iraok-runner-of-year-gen>div>div>div {
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 800px) {
+  #iraok-runner-of-year-table>table>thead>tr>th[data-column="n1"] {
+    display: none;
+  }
+}
