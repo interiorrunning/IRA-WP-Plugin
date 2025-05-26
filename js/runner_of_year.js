@@ -1,5 +1,4 @@
 iraok.runner_of_year.years = JSON.parse(iraok.runner_of_year.info[0].Years);
-iraok.runner_of_year.info[0].MaxRaces;
 
 iraok.runner_of_year.columns = {};
 
@@ -37,12 +36,23 @@ iraok.runner_of_year.columns.finishes = {
   header: "Best",
   data_column: "Finishes",
   getContent: function (row) {
-    let finishes = JSON.parse(row.Finishes).reduce(function (x, y) { return x + ", " + y; });
     let td = document.createElement("td");
     let code = document.createElement("code");
-    code.innerText = finishes
     td.appendChild(code);
     td.setAttribute("data-column", this.data_column);
+
+    let max_races = iraok.runner_of_year.info[0].MaxRaces;
+    let finishes = JSON.parse(row.Finishes);
+    let text = finishes[0];
+    for (let i = 1; i < finishes.length; i++) {
+      if (i < max_races)
+        text += ", " + finishes[i];
+      else
+        text += ", <del>" + finishes[i] + "</del>";
+    }
+
+    code.innerHTML = text;
+
     return td;
   },
 };
@@ -51,8 +61,8 @@ iraok.runner_of_year.columns.average = {
   header: "Avg",
   data_column: "Average",
   getContent: function (row) {
-    console.log(row.Finishes);
-    let finishes = JSON.parse(row.Finishes);
+    let max_races = iraok.runner_of_year.info[0].MaxRaces;
+    let finishes = JSON.parse(row.Finishes).slice(0, max_races);
     let total = finishes.reduce(function (x, y) { return x + y; });
     let avg = total / finishes.length;
 
