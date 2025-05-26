@@ -98,7 +98,7 @@ function iraok_init()
 
 function iraok_wp_enqueue_scripts()
 {
-	$ver = '1.0.05';
+	$ver = '1.0.06';
 
 	if (is_page('race') || is_page('athlete') || is_page('award') || is_page('series') || is_page('award') || is_page('races') || is_page('age-category') || is_page('age-grade') || is_page('search') || is_page('runner-of-year')) {
 		wp_register_script("iraok-ira", plugins_url('/js/ira.js', __FILE__), array(), $ver, array());
