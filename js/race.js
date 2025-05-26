@@ -254,7 +254,8 @@ if (iraok.race.info.StartDelay == 1)
 iraok.race.overall_columns.push(iraok.race.columns.time);
 iraok.race.overall_columns.push(iraok.race.columns.pace);
 iraok.race.overall_columns.push(iraok.race.columns.age_grade);
-iraok.race.overall_columns.push(iraok.race.columns.award);
+if (iraok.race.info.IsOutOfSeries == 0)
+  iraok.race.overall_columns.push(iraok.race.columns.award);
 
 iraok.race.age_graded_columns = [];
 iraok.race.age_graded_columns.push(iraok.race.columns.finish);
@@ -266,7 +267,8 @@ if (iraok.race.info.StartDelay == 1)
 iraok.race.age_graded_columns.push(iraok.race.columns.time);
 iraok.race.age_graded_columns.push(iraok.race.columns.adj_time);
 iraok.race.age_graded_columns.push(iraok.race.columns.age_grade);
-iraok.race.age_graded_columns.push(iraok.race.columns.award);
+if (iraok.race.info.IsOutOfSeries == 0)
+  iraok.race.age_graded_columns.push(iraok.race.columns.award);
 
 iraok.race.get_rows = function () {
   let rows;
