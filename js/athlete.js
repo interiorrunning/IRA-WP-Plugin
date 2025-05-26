@@ -83,16 +83,17 @@ iraok.athlete.columns.award = {
   getContent: function (row) {
     let td = document.createElement("td");
 
-    td = iraok.get_award_icons(
-      td,
-      row.icr,
-      row.iag,
-      row.idi,
-      row.gp,
-      row.ap,
-      row.cp,
-      row.di
-    );
+    if (row.is == 1)
+      td = iraok.get_award_icons(
+        td,
+        row.icr,
+        row.iag,
+        row.idi,
+        row.gp,
+        row.ap,
+        row.cp,
+        row.di
+      );
 
     td.setAttribute("data-column", this.data_column);
 
