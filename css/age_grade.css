@@ -17,6 +17,7 @@
 #iraok-age-grade-table > table > tbody > tr > td[data-column="n12"],
 #iraok-age-grade-table > table > tbody > tr > td[data-column="n13"],
 #iraok-age-grade-table > table > tbody > tr > td[data-column="total"],
+#iraok-age-grade-table > table > tbody > tr > td[data-column="age_group"],
 #iraok-age-grade-table > table > tbody > tr > td[data-column="eligible"] {
   text-align: center;
 }

@@ -146,9 +146,9 @@ iraok.get_award_icons = function (td, cr_gp, cr_ap, cr_cp, gp, ap, cp, di) {
     } else if (ap <= 3) {
       titles.push(
         (ap == 1 ? "1st" : ap == 2 ? "2nd" : "3rd") +
-          " " +
-          gender +
-          " Age Grade"
+        " " +
+        gender +
+        " Age Grade"
       );
       a.appendChild(iraok.get_age_grade_record(ap));
     }
@@ -174,6 +174,80 @@ iraok.get_division = function (div) {
   if (div === "M00-99+") return "Male";
   return div;
 };
+
+iraok.append_elements = function (elements) {
+
+  let div = document.createElement("div");
+
+  for (let i = 0; i < elements.length; i++) {
+    div.appendChild(elements[i]);
+  }
+
+  return div;
+};
+
+iraok.get_input = function (
+  type,
+  id,
+  name,
+  value,
+  labelVal,
+  icon,
+  checked,
+  onchange
+) {
+  let div = document.createElement("div");
+  let input = document.createElement("input");
+  input.id = id;
+  input.type = type;
+  input.name = name;
+  input.value = value;
+  input.checked = checked;
+  input.onchange = onchange;
+
+  let label = document.createElement("label");
+  label.setAttribute("for", input.id);
+  label.innerText = labelVal;
+
+  let span = document.createElement("span");
+  span.className = "material-symbols-outlined";
+  span.innerText = icon;
+  span.title = labelVal;
+
+  let label_icon = document.createElement("label");
+  label_icon.setAttribute("for", input.id);
+  label_icon.appendChild(span);
+
+  div.appendChild(label_icon);
+  div.appendChild(input);
+  div.appendChild(label);
+  return div;
+};
+
+iraok.get_input_radio = function (
+  id,
+  name,
+  value,
+  labelVal,
+  icon,
+  checked,
+  onchange
+) {
+  return iraok.get_input("radio", id, name, value, labelVal, icon, checked, onchange);
+};
+
+iraok.get_input_checkbox = function (
+  id,
+  name,
+  value,
+  labelVal,
+  icon,
+  checked,
+  onchange
+) {
+  return iraok.get_input("checkbox", id, name, value, labelVal, icon, checked, onchange);
+};
+
 
 iraok.get_cookie = function (cname) {
   let name = cname + "=";

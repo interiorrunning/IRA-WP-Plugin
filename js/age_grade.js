@@ -244,7 +244,7 @@ iraok.age_grade.set_table_caption = function () {
       : iraok.age_grade.cross;
 
   let txt = info.MaxRaces
-    ? "Max " + info.MaxRaces + " races | Min " + info.MinRaces + " races | " + (iraok.age_grade.info[0].Year >= 2025 ? "Age Grade %" : "Age Grade Place")
+    ? "Best  " + info.MaxRaces + " races | " + (iraok.age_grade.info[0].Year >= 2025 ? "Age Grade %" : "Age Grade Place")
     : "No races this year";
 
   if (iraok.age_grade.table_caption)

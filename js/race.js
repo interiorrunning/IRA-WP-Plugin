@@ -168,16 +168,17 @@ iraok.race.columns.award = {
       this.data_column + (iraok.race.is_age_graded == 1 ? "-ag" : "")
     );
 
-    td = iraok.get_award_icons(
-      td,
-      row.crg,
-      row.cra,
-      row.crc,
-      row.gp,
-      row.agp,
-      row.cp,
-      row.di
-    );
+    if (iraok.race.info.IsOutOfSeries == 0)
+      td = iraok.get_award_icons(
+        td,
+        row.crg,
+        row.cra,
+        row.crc,
+        row.gp,
+        row.agp,
+        row.cp,
+        row.di
+      );
 
     return td;
   },
@@ -283,7 +284,7 @@ iraok.race.get_rows = function () {
   return rows;
 };
 
-iraok.race.create_button = function (text, hash, is_filter) {
+iraok.race.create_button = function (text, hash) {
   let div = document.createElement("div");
   div.className = "wp-block-button";
 
@@ -292,10 +293,7 @@ iraok.race.create_button = function (text, hash, is_filter) {
   a.href = hash;
   a.innerText = text + String.fromCharCode(160).repeat(2);
 
-  let button_type = "swap_horiz";
-  if (is_filter === 0) button_type = "swap_vert";
-  if (is_filter === 1 && iraok.race.is_div_filtered() === 1)
-    button_type = "close";
+  let button_type = "close";
 
   let span = document.createElement("span");
   span.className = "material-symbols-outlined";
@@ -323,10 +321,10 @@ iraok.race.set_column_headers = function (cols) {
       let th = col.get_header
         ? col.get_header()
         : iraok.create_header(
-            col.header,
-            col.title,
-            col.data_column + (iraok.race.is_age_graded == 1 ? "-ag" : "")
-          );
+          col.header,
+          col.title,
+          col.data_column + (iraok.race.is_age_graded == 1 ? "-ag" : "")
+        );
       tr.appendChild(th);
     }
     thead.appendChild(tr);
@@ -380,9 +378,6 @@ iraok.race.set_table_caption = function () {
       sep +
       info.City +
       sep +
-      parseFloat(parseFloat(info.Distance).toFixed(1)) +
-      (info.IsMiles == 1 ? " mile" + (info.Distance > 1 ? "s" : "") : " km") +
-      sep +
       rows.length +
       " " +
       finisher_type +
@@ -403,66 +398,169 @@ iraok.race.set_page_header = function () {
       (iraok.race.info.IsOutOfSeries == 0 ? " #" + iraok.race.info.Number : "");
 };
 
-iraok.race.set_button_group = function () {
-  let buttons;
-  if (iraok.race.buttons_cache[iraok.race.hash]) {
-    buttons = iraok.race.buttons_cache[iraok.race.hash];
-  } else {
-    buttons = [];
+iraok.race.populate_races = function () {
+  let info = iraok.race.info;
+  if (!iraok.race.races && info.UrlName2) {
+    iraok.race.races = document.getElementById(
+      "iraok-race-races"
+    ).firstElementChild;
+    let group = iraok.race.races;
+    let div = document.createElement("div");
 
-    let info = iraok.race.info;
-    if (info.UrlName2) {
-      let text =
-        parseFloat(parseFloat(info.Distance).toFixed(1)) +
-        (info.IsMiles == 1 ? " mile" + (info.Distance > 1 ? "s" : "") : " km");
 
-      let div = document.createElement("div");
-      div.className = "wp-block-button";
+    let float1 = parseFloat(info.Distance);
+    let float2 = parseFloat(info.Distance2);
 
-      let a = document.createElement("a");
-      a.className = "wp-block-button__link wp-element-button";
-      a.href = "/race/" + info.Year + "/" + info.UrlName2 + "/";
-      a.innerText = text + String.fromCharCode(160).repeat(2);
+    let dis1 = parseFloat(float1.toFixed(1)) +
+      (info.IsMiles == 1 ? " mile" + (info.Distance > 1 ? "s" : "") : " km")
 
-      let span = document.createElement("span");
-      span.className = "material-symbols-outlined";
-      span.innerText = "swap_vert";
+    let dis2 = parseFloat(float2.toFixed(1)) +
+      (info.IsMiles2 == 1 ? " mile" + (info.Distance2 > 1 ? "s" : "") : " km")
 
-      a.appendChild(span);
-      div.appendChild(a);
-      buttons.push(div);
-    }
+    let race1 = iraok.get_input_radio(
+      "iraok_races_race1",
+      "iraok_races",
+      "race1",
+      dis1,
+      float1 > float2 ? "verified" : "directions_run",
+      1,
+      function () {
 
-    let combined_filter = iraok.race.div_filter + iraok.race.gen_filter;
-    if (iraok.race.is_age_graded === 0) {
-      let text = "Overall";
-      let hash = iraok.race.get_hash(1, combined_filter);
-      buttons.push(iraok.race.create_button(text, hash, 0));
+      }
+    );
+    let race2 = iraok.get_input_radio(
+      "iraok_races_race2",
+      "iraok_races",
+      "race2",
+      dis2,
+      float1 > float2 ? "directions_run" : "verified",
+      0,
+      function () {
+        window.location = "/race/" + info.Year + "/" + info.UrlName2 + "/";
+      }
+    );
+
+    if (float1 > float2) {
+      div.appendChild(race1);
+      div.appendChild(race2);
     } else {
-      let text = "Age Graded";
-      let hash = iraok.race.get_hash(0, combined_filter);
-      buttons.push(iraok.race.create_button(text, hash, 0));
+      div.appendChild(race2);
+      div.appendChild(race1);
     }
-
-    let text = combined_filter;
-    if (text) {
-      let hash = iraok.race.get_filter_href(combined_filter);
-      if (text === "M") text = "Male";
-      if (text === "F") text = "Female";
-      buttons.push(iraok.race.create_button(text, hash, 1));
-    } else {
-      let hash = iraok.race.get_filter_href(combined_filter);
-      buttons.push(iraok.race.create_button("All", hash, 1));
-    }
-    iraok.race.buttons_cache[iraok.race.hash] = buttons;
-  }
-
-  for (let i = 0; i < buttons.length; i++) {
-    iraok.race.button_group.appendChild(buttons[i]);
+    group.appendChild(div);
   }
 };
 
-iraok.race.populate_table_and_button_group = function (hash) {
+iraok.race.populate_type = function () {
+  if (!iraok.race.type) {
+    iraok.race.type = document.getElementById(
+      "iraok-race-type"
+    ).firstElementChild;
+    let group = iraok.race.type;
+    let div = document.createElement("div");
+
+    let overall = iraok.get_input_radio(
+      "iraok_type_overall",
+      "iraok_type",
+      "Overall",
+      "Overall",
+      "trophy",
+      iraok.race.is_age_graded === 0,
+      function () {
+        let combined_filter = iraok.race.div_filter + iraok.race.gen_filter;
+        let hash = iraok.race.get_hash(0, combined_filter);
+        window.location.hash = hash;
+        iraok.race.populate_table_and_button_group(hash);
+      }
+    );
+    let age_graded = iraok.get_input_radio(
+      "iraok_type_age_graded",
+      "iraok_type",
+      "Age Graded",
+      "Age Graded",
+      "award_star",
+      iraok.race.is_age_graded === 1,
+      function () {
+        let combined_filter = iraok.race.div_filter + iraok.race.gen_filter;
+        let hash = iraok.race.get_hash(1, combined_filter);
+        window.location.hash = hash;
+        iraok.race.populate_table_and_button_group(hash);
+      }
+    );
+
+    div.appendChild(overall);
+    div.appendChild(age_graded);
+    group.appendChild(div);
+  }
+};
+
+iraok.race.populate_gen = function () {
+  if (!iraok.race.gen) {
+    iraok.race.gen = document.getElementById(
+      "iraok-race-gen"
+    ).firstElementChild;
+    let group = iraok.race.gen;
+    let div = document.createElement("div");
+
+    iraok.race.gen_female = iraok.get_input_checkbox(
+      "iraok_gen_female",
+      "iraok_gen",
+      "F",
+      "Female",
+      "female",
+      iraok.race.gen_filter === "F",
+      function () {
+        let hash = iraok.race.get_hash(iraok.race.is_age_graded, iraok.race.get_gender_filter());
+        window.location.hash = hash;
+        iraok.race.populate_table_and_button_group(hash);
+      }
+    );
+    iraok.race.gen_male = iraok.get_input_checkbox(
+      "iraok_gen_male",
+      "iraok_gen",
+      "M",
+      "Male",
+      "male",
+      iraok.race.gen_filter === "M",
+      function () {
+        let hash = iraok.race.get_hash(iraok.race.is_age_graded, iraok.race.get_gender_filter());
+        window.location.hash = hash;
+        iraok.race.populate_table_and_button_group(hash);
+      }
+    );
+
+    div.appendChild(iraok.race.gen_female);
+    div.appendChild(iraok.race.gen_male);
+    group.appendChild(div);
+  }
+};
+
+iraok.race.get_gender_filter = function () {
+  if (!iraok.race.gen_male || !iraok.race.gen_female) return "";
+
+  let male = iraok.race.gen_male.children[1].checked;
+  let female = iraok.race.gen_female.children[1].checked;
+
+  if (male && female) return "";
+  if (!male && !female) return "";
+  if (male) return "M";
+  return "F";
+};
+
+iraok.race.set_button_group = function () {
+  iraok.race.populate_races();
+  iraok.race.populate_type();
+  iraok.race.populate_gen();
+
+  let text = iraok.race.div_filter + iraok.race.gen_filter;
+  if (text && text !== "M" && text !== "F") {
+    let hash = iraok.race.get_hash(iraok.race.is_age_graded, iraok.race.get_gender_filter());
+    let button = iraok.race.create_button(text, hash);
+    iraok.race.button_group.appendChild(button);
+  }
+};
+
+iraok.race.set_hash_filter = function (hash) {
   if (!hash) hash = "";
   if (hash.match(/^#A/)) {
     iraok.race.is_age_graded = 1;
@@ -490,6 +588,11 @@ iraok.race.populate_table_and_button_group = function (hash) {
     iraok.race.div_filter = "";
   }
   iraok.race.hash = hash;
+};
+
+iraok.race.populate_table_and_button_group = function (hash) {
+
+  iraok.race.set_hash_filter(hash);
 
   if (!iraok.race.series_columns)
     iraok.race.series_columns = document.getElementById(
