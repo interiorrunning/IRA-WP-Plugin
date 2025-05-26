@@ -95,6 +95,9 @@ a.wp-element-button>span.material-symbols-outlined {
 
 @media only screen and (max-width: 525px) {
 
+  #iraok-race-races>div>div>div>label:first-child,
+  #iraok-race-type>div>div>div>label:first-child,
+  #iraok-race-gen>div>div>div>label:first-child,
   #iraok-race-table>table>thead>tr>th[data-column="ag"],
   #iraok-race-table>table>thead>tr>th[data-column="award-ag"],
   #iraok-race-table>table>tbody>tr>td[data-column="ag"],
