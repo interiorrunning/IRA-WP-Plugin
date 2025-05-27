@@ -6,7 +6,7 @@ iraok.athlete = {};
 iraok.series = {};
 iraok.age_category = {};
 iraok.age_grade = {};
-iraok.runner_of_year = {};
+iraok.runner_of_the_year = {};
 iraok.search = {};
 
 iraok.get_award_colour = function (place) {
