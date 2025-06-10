@@ -402,54 +402,38 @@ iraok.race.set_page_header = function () {
 
 iraok.race.populate_races = function () {
   let info = iraok.race.info;
-  if (!iraok.race.races && info.UrlName2) {
+  let distances = JSON.parse(info.Distances).sort((a, b) => parseFloat(b.Distance) * (b.IsMiles == 1 ? 1.6 : 1) - parseFloat(a.Distance) * (a.IsMiles == 1 ? 1.6 : 1));
+
+  if (!iraok.race.races && distances.length > 1) {
     iraok.race.races = document.getElementById(
       "iraok-race-races"
     ).firstElementChild;
     let group = iraok.race.races;
-    let div = document.createElement("div");
+    let div = document.createElement("div");    
 
+    for (let i = 0; i < distances.length; i++) {
+      let distance = distances[i];
+      let float1 = parseFloat(distance.Distance);
+      let dis1 = parseFloat(float1.toFixed(1)) +
+        (distance.IsMiles == 1 ? " mile" + (distance.Distance > 1 ? "s" : "") : " km")
 
-    let float1 = parseFloat(info.Distance);
-    let float2 = parseFloat(info.Distance2);
+      let race1 = iraok.get_input_radio(
+        "iraok_races_race" + i,
+        "iraok_races",
+        "race" + i,
+        dis1,
+        i > 0 ? "directions_run" : "verified",
+        distance.Distance == info.Distance && distance.IsMiles == info.IsMiles,
+        function () {
+          window.location = "/race/" + info.Year + "/" + distance.UrlName + "/";
+        }
+      );
 
-    let dis1 = parseFloat(float1.toFixed(1)) +
-      (info.IsMiles == 1 ? " mile" + (info.Distance > 1 ? "s" : "") : " km")
-
-    let dis2 = parseFloat(float2.toFixed(1)) +
-      (info.IsMiles2 == 1 ? " mile" + (info.Distance2 > 1 ? "s" : "") : " km")
-
-    let race1 = iraok.get_input_radio(
-      "iraok_races_race1",
-      "iraok_races",
-      "race1",
-      dis1,
-      float1 > float2 ? "verified" : "directions_run",
-      1,
-      function () {
-
-      }
-    );
-    let race2 = iraok.get_input_radio(
-      "iraok_races_race2",
-      "iraok_races",
-      "race2",
-      dis2,
-      float1 > float2 ? "directions_run" : "verified",
-      0,
-      function () {
-        window.location = "/race/" + info.Year + "/" + info.UrlName2 + "/";
-      }
-    );
-
-    if (float1 > float2) {
       div.appendChild(race1);
-      div.appendChild(race2);
-    } else {
-      div.appendChild(race2);
-      div.appendChild(race1);
+
     }
     group.appendChild(div);
+
   }
 };
 
