@@ -143,6 +143,61 @@ iraok.runner_of_the_year.populate_gens = function (filters) {
   }
 };
 
+iraok.runner_of_the_year.populate_fins = function (filters) {
+
+  const min = iraok.runner_of_the_year.min;
+  const max = iraok.runner_of_the_year.max;
+
+  if (!iraok.runner_of_the_year.fin) {
+    iraok.runner_of_the_year.fin = document.getElementById("iraok-runner-of-the-year-fin");
+    let group = iraok.runner_of_the_year.fin;
+
+
+    for (let i = max; i >= min; i--) {
+      let radio = iraok.runner_of_the_year.get_input_radio(
+        "iraok_fin_" + i,
+        "iraok_fin",
+        i,
+        i,
+        i === max ? null : null,
+        filters.fin == i,
+        function () {
+          iraok.runner_of_the_year.set_filter_fin(i);
+          iraok.runner_of_the_year.filter();
+        }
+      );
+      group.appendChild(radio);
+    }
+  }
+};
+
+
+iraok.runner_of_the_year.set_min_max_races = function () {
+
+  let min = null;
+  let max = null;
+
+  let max_races = iraok.runner_of_the_year.info[0].MaxRaces;
+  let results = iraok.runner_of_the_year.results;
+  for (let i = 0; results && i < results.length; i++) {
+    let row = results[i];
+    let finishes = JSON.parse(row.Finishes);
+
+    if (min === null || finishes.length < min)
+      min = finishes.length;
+
+    if (max === null || finishes.length > max)
+      max = finishes.length;
+  }
+
+  if (max > max_races)
+    max = max_races;
+
+  iraok.runner_of_the_year.min = min;
+  iraok.runner_of_the_year.max = max;
+
+};
+
 iraok.runner_of_the_year.set_table_caption = function () {
 
   let selected_year = iraok.runner_of_the_year.info[0].Year
@@ -183,16 +238,26 @@ iraok.runner_of_the_year.get_input_radio = function (
   label_icon.setAttribute("for", input.id);
   label_icon.appendChild(span);
 
-  div.appendChild(label_icon);
-  div.appendChild(input);
-  div.appendChild(label);
+  if (icon === null) {
+    div.appendChild(label);
+    div.appendChild(input);
+  }
+  else {
+
+    div.appendChild(label_icon);
+    div.appendChild(input);
+    div.appendChild(label);
+  }
+
   return div;
 };
 
 iraok.runner_of_the_year.populate_table = function () {
+  iraok.runner_of_the_year.set_min_max_races();
   let filters = iraok.runner_of_the_year.filter();
   iraok.runner_of_the_year.populate_years();
   iraok.runner_of_the_year.populate_gens(filters);
+  iraok.runner_of_the_year.populate_fins(filters);
 
   if (!iraok.runner_of_the_year.figure)
     iraok.runner_of_the_year.figure = document.getElementById("iraok-runner-of-the-year-table");
@@ -217,6 +282,15 @@ iraok.runner_of_the_year.populate_table = function () {
       [iraok.runner_of_the_year.figure, iraok.runner_of_the_year.age_group],
       function (tr, row) {
         tr.setAttribute("data-gen", row.IsFemale == 1 ? "F" : "M");
+
+        let max_races = iraok.runner_of_the_year.info[0].MaxRaces;
+        let finishes = JSON.parse(row.Finishes);
+
+        let fin = finishes.length;
+        if (fin > max_races)
+          fin = max_races;
+
+        tr.setAttribute("data-fin", fin);
       }
     );
   }
@@ -228,25 +302,41 @@ iraok.runner_of_the_year.set_filter_gen = function (gen) {
   iraok.runner_of_the_year.set_table_caption();
 };
 
+iraok.runner_of_the_year.set_filter_fin = function (fin) {
+  iraok.runner_of_the_year.filter_fin = fin;
+  iraok.set_cookie("fin", fin, 30);
+  iraok.runner_of_the_year.set_table_caption();
+};
+
 iraok.runner_of_the_year.filter = function () {
   if (!iraok.runner_of_the_year.filter_gen)
     iraok.runner_of_the_year.filter_gen = iraok.get_cookie("gen");
 
   if (!iraok.runner_of_the_year.filter_gen) iraok.runner_of_the_year.filter_gen = "F";
-
   let gen = iraok.runner_of_the_year.filter_gen;
+
+  if (!iraok.runner_of_the_year.filter_fin)
+    iraok.runner_of_the_year.filter_fin = iraok.get_cookie("fin");
+
+  if (!iraok.runner_of_the_year.filter_fin) iraok.runner_of_the_year.filter_fin = iraok.runner_of_the_year.max;
+
+  if (iraok.runner_of_the_year.filter_fin > iraok.runner_of_the_year.max || iraok.runner_of_the_year.filter_fin < iraok.runner_of_the_year.min)
+    iraok.runner_of_the_year.filter_fin = iraok.runner_of_the_year.max;
+
+  let fin = iraok.runner_of_the_year.filter_fin;
 
   if (iraok.runner_of_the_year.style) iraok.runner_of_the_year.style.remove();
 
   iraok.runner_of_the_year.style = document.createElement("style");
   let text_content = "";
   text_content =
-    "#iraok-runner-of-the-year-table > table > tbody > tr[data-gen] { display: none; } ";
+    "#iraok-runner-of-the-year-table > table > tbody > tr[data-gen][data-fin] { display: none; } ";
+
+  const data_gen = '[data-gen="' + gen + '"]';
+  const data_fin = '[data-fin="' + fin + '"]';
 
   text_content +=
-    '#iraok-runner-of-the-year-table > table > tbody > tr[data-gen="' +
-    gen +
-    '"] { display: table-row; } ';
+    '#iraok-runner-of-the-year-table > table > tbody > tr' + data_gen + data_fin + ' { display: table-row; } ';
 
 
   iraok.runner_of_the_year.style.textContent = text_content;
@@ -254,5 +344,6 @@ iraok.runner_of_the_year.filter = function () {
 
   return {
     gen: gen,
+    fin: fin
   };
 };

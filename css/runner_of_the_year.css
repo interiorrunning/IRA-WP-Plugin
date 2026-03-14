@@ -8,13 +8,22 @@
 #iraok-runner-of-the-year-table>table>tbody>tr>td[data-column="Average"],
 #iraok-runner-of-the-year-table>table>tbody>tr>td[data-column="AgeGroup"] {
   text-align: center;
+  white-space: nowrap;
 }
 
 #iraok-runner-of-the-year-gen>div>div>div {
   white-space: nowrap;
 }
 
+
+#iraok-runner-of-the-year-fin>div>input {
+  margin-left:4px;
+}
+
+
+
 @media only screen and (max-width: 950px) {
+
   #iraok-runner-of-the-year-table>table>thead>tr>th[data-column="AgeGroup"],
   #iraok-runner-of-the-year-table>table>tbody>tr>td[data-column="AgeGroup"] {
     display: none;
@@ -22,6 +31,7 @@
 }
 
 @media only screen and (max-width: 850px) {
+
   #iraok-runner-of-the-year-table>table>thead>tr>th[data-column="City"],
   #iraok-runner-of-the-year-table>table>tbody>tr>td[data-column="City"] {
     display: none;
