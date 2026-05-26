@@ -11,6 +11,7 @@
   text-align: left;
 }
 
+#iraok-races-table > table > thead > tr > th[data-column="Finishers"],
 #iraok-races-table > table > tbody > tr > td[data-column="Date"] {
   white-space: nowrap;
 }
